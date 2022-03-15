@@ -1,0 +1,7 @@
+wget -q -O /tmp/tomee.zip https://github.com/kevinrjones/jakarta-9-web-fundamentals/raw/main/TomEE.zip
+unzip /tmp/tomee.zip -d /home/nt-user/workspace
+rm -f /tmp/tomee.zip
+cd /home/nt-user/workspace/tomee/bin
+chmod +x *.sh
+cd /home/nt-user/workspace
+./tomee/bin/catalina.sh start

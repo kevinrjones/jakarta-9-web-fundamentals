@@ -12,4 +12,56 @@ There are several steps to writing, deploying and making accessible your servlet
 
 This file already has the `MainServlet` class defined as well as the `urlPatterns` to allow you to browse to the file. In this exercise you will provide simple implementations of `doGet` and `doPost`
 
-1. If you deploy and test the application now then two tests should pass, you should be able to browse to the application you have deployed and you should be able to 'post' something to the application, although in both cases nothing substantial will happen. You can also see this by [browsing to the site at](http://localhost:8081/myblog).
+1. If you deploy and test the application now then two tests should pass, you should be able to browse to the application you have deployed and you should be able to 'post' something to the application, although in both cases nothing substantial will happen. You can also see this by browsing to the site at http://localhost:8081/myblog (you can open a browser tab and copy or enter this address)
+
+1. The main part of this exercise is to capture the `name` query parameter from the input URL and send that name back in XML content to the browser, to do that perform the following steps
+
+    1.  Add code to the `doGet` method to get the value of the `name` request parameter from the query string
+    1. If the name value is null then respond with an error message
+    1. Otherwise set the response content type to `text/xml`
+    1. Respond with structured XML that conatains the name, the XML should look like this
+    ```xml
+    <application>
+        <name>Hello, [name]</name>
+    </application>
+    ```
+    where [name] is the value from the query string
+
+    1. Now redeploy the application and run the tests
+    1. If you are successful three tests should now pass
+
+1. Now that you can get a value from the query string the next part will extend the response to include a servlet initialization parameter and a servlet context initialization parameter.
+    1. Add two member variables to the `MainServlet` and initialize them to empty strings, one will hold the servlet initialization parameter and one will hold the servlet context initialization parameter.
+
+    1. Add an `init` method to the servlet
+
+    1. In the `init` method add calls to `getInitParameter` to get the servlet initialization parameter, the name of this parameter is 'productName'
+
+    1. In the `init` method add a call to `getServletContext().getInitParameter` to get the servlet context initialization parameter, this is called 'connStr'
+
+    1. Update the XML output to include this values, the XML should look like this
+    ```xml
+    <application>
+        <name>Hello, [name]</name>
+        <product>[productName]</product>
+        <connectionStr>[connStr]</connectionStr>
+    </application>
+    where [name] is the value from the query string, [productName] is the value of the servlet initialization parameter and [connStr] is value of the servlet context initialization parameter.
+    
+    ```
+    1. You now need to edit the `web.xml` file to add the two files.
+    Open this file and in here add a `<context-param>` entry, give it the name 'connStr' and the value 'My Connection String'
+    Also in this file, in the `<Servlet>` entry add an `<init-param>` section, give this parameter the name of 'productName' and the value 'Super Blog'
+    1. Redeploy the application and run the tests again, four tests should now pass
+
+1. For the last part of this exercise you will implement the `doPost` method to respond to a user's input. The code will be similar to the `doGet` above, you will extract the name parameter from the form request and then send XML back to the user that contains that value.
+
+    1. In the `doPost` method add a call to get the name parameter from the request
+    1. Add code to send XML back to the caller if the name parameter exists, the XML should look like this
+    ```xml
+    <name>Hello, [name]</name>
+    ```
+    where [name] is the value from the post request.
+    1. Make sure to set the content type to `text/xml`
+    1. If the name is not present then add code to redirect to 'index.html'
+    1. Now all the tests should pass, CONGRATULATIONS

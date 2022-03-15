@@ -12,4 +12,4 @@ There are several steps to writing, deploying and making accessible your servlet
 
 This file already has the `MainServlet` class defined as well as the `urlPatterns` to allow you to browse to the file. In this exercise you will provide simple implementations of `doGet` and `doPost`
 
-1. If you deploy and test the application now then one test should pass, you should be able to browse to the application you have deployed. You can also see this by browsing to the 
+1. If you deploy and test the application now then two tests should pass, you should be able to browse to the application you have deployed and you should be able to 'post' something to the application, although in both cases nothing substantial will happen. You can also see this by [browsing to the site at](http://localhost:8081/myblog).

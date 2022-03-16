@@ -49,7 +49,7 @@ Remember that you will also need to add the correct package references
 
 ## Setup MVC
 
-1. Move index.jsp and _header.jsp to the WEB-INF folder and fix up the CSS/JS references
+1. Delete index.jsp and _header.jsp from the root directory, if you open the WEB-INF folder you will see that these files exist there, these files are no longer 
 1. Add a request dispatcher
 
 ## Create and Use a Model to Display the Topics

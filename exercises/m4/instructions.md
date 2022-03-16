@@ -8,7 +8,7 @@ The exercises have two directories, the `before` directory is where you will wor
 
 ## Deploy the application
 
-Deploy and test the app
+Deploy and test the app, two tests should pass, these are the tests from the previous exercise.
 
 ## Using Includes
 
@@ -17,15 +17,40 @@ Move the header to a header block and include it
 1. In `webapp` create an `_header.jsp` page
 1. Move the 'header' block from the 'index.jsp' page
 1. Add a call to 'include' directive to the 'index.jsp' page to include the header
-1. Redeploy and browse to and test the application
+1. Redeploy and browse to and test the application, 2 tests should pass
+1. If you open a browser tab and browse to http://localhost:8081/myblog/index.jsp you should still see the header
 
 ## Use a Scriptlet
 
-1. Create a code block to add the colors to the page and update the JSP to use that code block
+1. In `_header.jsp` there is a section that displays a list of colors, you are going to replace this with a dynamic block
+1. At the top of the page add a code block to initialise the colors, the code should look like this:
+```jsp
+<%
+  List<String> colors = new ArrayList<>();
+
+  colors.add("Default");
+  colors.add("Red");
+  colors.add("Green");
+%>
+``` 
+Remember that you will also need to add the correct package references
+```jsp
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.util.List" %>Ø
+```
+1. Where the colors are shown in the HTML replace that block with a Java code block that iterates over the `colors` collection and displays each color, something like this:
+```jsp
+<% for (String color:colors) { %>
+<li><%= color %></li>
+<% } %>
+```
+1. Redeploy and browse to and test the application, 2 tests should pass
+1. If you open a browser tab and browse to http://localhost:8081/myblog/index.jsp you should be able to click on the colors menu and still see the colors
 
 ## Setup MVC
 
 1. Move index.jsp and _header.jsp to the WEB-INF folder and fix up the CSS/JS references
+1. Add a request dispatcher
 
 ## Create and Use a Model to Display the Topics
 

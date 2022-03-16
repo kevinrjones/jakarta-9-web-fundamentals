@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="62257100-a9bb-4070-a2d5-1a4b28f7391f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/../../m4/before/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../m4/before/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../m4/before/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../m4/before/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../m4/before/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../m4/before/src/main/java/com/knowledgespike/MainServlet.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../m4/before/src/main/java/com/knowledgespike/MainServlet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../m4/instructions.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../m4/instructions.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,6 +40,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -203,6 +206,7 @@
       <workItem from="1645891618769" duration="819000" />
       <workItem from="1645910180015" duration="172000" />
       <workItem from="1647430708571" duration="605000" />
+      <workItem from="1647439978115" duration="495000" />
     </task>
     <servers />
   </component>

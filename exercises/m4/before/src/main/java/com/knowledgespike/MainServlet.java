@@ -1,5 +1,6 @@
 package com.knowledgespike;
 
+import com.knowledgespike.blog.ApplicationSettings;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebInitParam;
 import jakarta.servlet.annotation.WebServlet;
@@ -22,6 +23,11 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.getWriter().write("");
+    }
+
+    private void setUpData(HttpServletRequest request, String type, String detail) {
+        ApplicationSettings applicationSettings = (ApplicationSettings) getServletContext().getAttribute("app");
+        var data = applicationSettings.setupData(type, detail);
     }
 
 }

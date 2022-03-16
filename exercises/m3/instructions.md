@@ -1,4 +1,4 @@
-# Module 2 - Writing a Servlet
+# Module 3 - Writing a Servlet
 
 ## General Instructions
 

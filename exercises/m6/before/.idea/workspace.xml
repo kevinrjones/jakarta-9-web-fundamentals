@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9a8435c3-6e56-4923-8c3e-cd31095f9a67" name="Changes" comment="" />
+    <list default="true" id="9a8435c3-6e56-4923-8c3e-cd31095f9a67" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../after/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../after/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../after/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../after/src/test/java/com/knowledgespike/MainServletTestM6.java" beforeDir="false" afterPath="$PROJECT_DIR$/../after/src/test/java/com/knowledgespike/MainServletTestM6.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../instructions.md" beforeDir="false" afterPath="$PROJECT_DIR$/../instructions.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -46,10 +54,14 @@
       </state>
     </system>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProjectId" id="25fFluEYpYbZxxu04hUlqW4dg1g" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,6 +70,10 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RunManager" selected="Gradle.Tests in 'MyBlog'">
     <configuration name="Tests in 'MyBlog'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
@@ -118,6 +134,7 @@
       <option name="presentableId" value="Default" />
       <updated>1645910388451</updated>
       <workItem from="1645910389525" duration="79000" />
+      <workItem from="1647449282210" duration="1136000" />
     </task>
     <servers />
   </component>

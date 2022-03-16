@@ -60,6 +60,10 @@ Remember that you will also need to add the correct package references
 ## Create and Use a Model to Display the Topics
 
 1. In the '`init` method create a new `ApplicationSettings` instance and store it in the `ServletContext`giving it the name `app`
+```java
+        var applicationSettings = new ApplicationSettings();
+        getServletContext().setAttribute("app", applicationSettings);
+```
 1. Create a page called `_topics.jsp` in the WEB-INF directory
 1. Add the HTML to show the topics, the HTML should initially look like this
 ```jsp
@@ -83,11 +87,11 @@ for(Topic topic: topics) { %>
 <% } %>
 ```
 1. In index.jsp add a call to `<%@include file="_topics.jsp"%>` to make sure the topics are included in the page
-1. Deploy and run the tests, x tests should pass
+1. Deploy and run the tests, 5 tests should pass
 
 ## Create and Use a Model to Display the News Items
 
-1. In the `MainServlet` find the `setupData` method and add a call to data in the `request` with the name `items`
+1. In the `MainServlet` find the `setupData` method and add a call to add the data into the `request` with the name `items`
 The code should look like this:
 ```java
         request.setAttribute("items", data);
@@ -119,4 +123,4 @@ setUpData(req, ApplicationSettings.topic, ApplicationSettings.all);
 </div>
 ```
 1. In index.jsp add a call to `<%@include file="_newsitems.jsp"%>` to make sure the topics are included in the page
-1. Deploy and run the tests, x tests should pass
+1. Deploy and run the tests, all tests should pass

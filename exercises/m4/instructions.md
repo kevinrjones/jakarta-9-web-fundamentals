@@ -50,8 +50,13 @@ Remember that you will also need to add the correct package references
 ## Setup MVC
 
 1. Delete index.jsp and _header.jsp from the root directory, if you open the WEB-INF folder you will see that these files exist there, these files are no longer 
-1. Add a request dispatcher
-
+1. In `MainServlet` replace the code in `doGet` with calls to get the `RequestDispatcher` and to dispatch to `index.jsp`
+```java
+        var dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
+        dispatcher.forward(req, resp);
+```
+1. Redeploy and build the application, one test should now pass
+1. If you browse to http://localhost:8081/myblog/index.jsp you should get a 404 but if you browse to http://localhost:8081/myblog/home then the page should appear
 ## Create and Use a Model to Display the Topics
 
 1. In the '`init` method create a new `ApplicationSettings` instance and store it in the `ServletContext`giving it the name `app`

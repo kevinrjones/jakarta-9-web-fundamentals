@@ -20,13 +20,23 @@ Deploy and test the app
 <li>${ colors[2] }</li>
 ```
 
-1. Redeploy and run the tests, x tests should pass
+1. Redeploy and run the tests, 5 tests should pass
 
 ## Updating the News Items Page
 
-1. Change the code so that each news item is stored in the request object, name the item `item`
+1. Change the code so that each news item is stored in the pageContext object, name the item `item`
+```jsp
+pageContext.setAttribute("item", item);
+```
 1. Change the scriptlet code to become expressions instead, using the item you stored in the request in the previous step
-1. Redeploy and run the tests, x tests should pass
+```jsp
+<h2><a href="/news/${item.title}.do">${item.title}</a></h2>
+<div>
+    ${item.entry}
+</div>
+```            
+1. Redeploy and run the tests, 5 tests should pass
+1. If you browse to http://localhost:8081/myblog/home then you should still see the news items
 
 ## Using Intrinsics
 
@@ -36,4 +46,4 @@ ${pageContext.request.contextPath}
 ```
 
 1. Change `application.getInitParameter` to use the `initParam` intrinsic and use the expression language to access this
-1. Redeploy and run the tests, x tests should pass
+1. Redeploy and run the tests, all the tests should pass

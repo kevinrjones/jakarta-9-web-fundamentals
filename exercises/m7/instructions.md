@@ -25,10 +25,10 @@ Deploy and test the app
 </listener>
 ```
 1. Deploy the application and run the tests, they should still all run correctly
-1. If the application fails to deploy this may be because of an issue with your startup code, maybe the listener or the listener configuration, in this case you may need fix the error and before you redeploy stop and re-start tomee, do do that run the following commands
+1. **If the application fails to deploy this may be because of an issue with your startup code, maybe the listener or the listener configuration, in this case you may need fix the error and before you redeploy stop and re-start tomee, do do that run the following commands**
 ```bash
 ~/workspace/tomee/bin/catalina.sh stop
 ~/workspace/tomee/bin/catalina.sh start
 ``` 
-1. If this doesn't work you can delete the web application and the web application war file in the tomee webapps directory, this is `~/tomee/webapps`
+1. **If this doesn't work you can delete the web application and the web application war file in the tomee webapps directory, this is `~/tomee/webapps`**
 

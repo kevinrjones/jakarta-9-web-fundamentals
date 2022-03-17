@@ -39,27 +39,36 @@ Deploy and test the app
         1. Redirect to `home`.
 
             ```java
-                @Override
-                protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-                    if (req.getRequestURI().contains("login.do")) {
-                        var userName = req.getParameter("username");
-                        var password = req.getParameter("password");
+            @Override
+            protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+                if (req.getRequestURI().contains("login.do")) {
+                    var userName = req.getParameter("username");
+                    var password = req.getParameter("password");
 
-                        req.getServletContext().log(String.format("Trying to log in userName: %s, password: %s", userName, password));
+                    req.getServletContext().log(String.format("Trying to log in userName: %s, password: %s", userName, password));
 
-                        if (userName.isEmpty() || !userName.equals(password)) {
-                            resp.sendRedirect(resp.encodeURL("showlogin.do"));
-                        } else {
-                            var user = new User(userName);
-                            var session = req.getSession(true);
-                            session.setAttribute("user", user);
+                    if (userName.isEmpty() || !userName.equals(password)) {
+                        resp.sendRedirect(resp.encodeURL("showlogin.do"));
+                    } else {
+                        var user = new User(userName);
+                        var session = req.getSession(true);
+                        session.setAttribute("user", user);
 
-                            resp.sendRedirect(resp.encodeURL("home"));
-                        }
+                        resp.sendRedirect(resp.encodeURL("home"));
                     }
                 }
+            }
             ```
 
+1. All the tests should pass
 ## Adding a Logout Action
 
-1.
+1. To logout you need to send a request to and when that request is received invalidate the session
+1. In `doGet` if the URI is `logout.do` then invalidate the session
+``` java
+       if (req.getRequestURI().contains("logout.do")) {
+            var session = req.getSession(false);
+            if(session != null)
+                session.invalidate();
+        }
+```

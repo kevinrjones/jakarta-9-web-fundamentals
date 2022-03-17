@@ -107,7 +107,7 @@ public class MainServletTestM9 {
 
         HttpHeaders headers = response.headers();
         var header = headers.firstValue("Location");
-        assertThat(header).contains("home");
+        assertThat(header.get()).contains("home");
     }
 
     @Test

@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="4a944375-32e3-4737-856c-58725dcd875c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/../after/src/test/java/com/knowledgespike/MainServletTestM9.java" beforeDir="false" afterPath="$PROJECT_DIR$/../after/src/test/java/com/knowledgespike/MainServletTestM9.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/com/knowledgespike/MainServletTestM9.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/knowledgespike/MainServletTestM9.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../instructions.md" beforeDir="false" afterPath="$PROJECT_DIR$/../instructions.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -31,6 +32,17 @@
                 <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
                 <item name="MyBlog" type="f1a62948:ProjectNode" />
               </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MyBlog" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MyBlog" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="deployment" type="c8890929:TasksNode$1" />
+              </path>
             </expand>
             <select />
           </tree_state>
@@ -54,8 +66,12 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
-  <component name="RunManager" selected="Gradle.Tests in 'com.knowledgespike'">
+  <component name="RunManager" selected="Gradle.Tests in 'MyBlog'">
     <configuration name="Tests in 'MyBlog'" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -123,9 +139,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.Tests in 'com.knowledgespike'" />
         <item itemvalue="Gradle.Tests in 'MyBlog'" />
         <item itemvalue="Gradle.before [cargoRedeployRemote]" />
+        <item itemvalue="Gradle.Tests in 'com.knowledgespike'" />
       </list>
     </recent_temporary>
   </component>
@@ -138,7 +154,7 @@
       <option name="presentableId" value="Default" />
       <updated>1645969125599</updated>
       <workItem from="1645969126685" duration="77000" />
-      <workItem from="1647529397019" duration="2000" />
+      <workItem from="1647529397019" duration="946000" />
     </task>
     <servers />
   </component>

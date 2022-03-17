@@ -61,6 +61,8 @@ Deploy and test the app
             ```
 
 1. All the tests should pass
+
+
 ## Adding a Logout Action
 
 1. To logout you need to send a request to and when that request is received invalidate the session

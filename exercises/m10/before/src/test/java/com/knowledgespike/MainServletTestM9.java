@@ -25,27 +25,6 @@ public class MainServletTestM9 {
     static String URL = "http://localhost:8081/myblog";
 
     @Test
-    public void test_that_when_not_logged_in_then_the_colors_are_not_set() throws Throwable {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(String.format("%s/foo/bar/app.do", URL)))
-                .GET()
-                .build();
-
-        HttpResponse<String> response = client.send(request,
-                HttpResponse.BodyHandlers.ofString());
-
-        assertThat(response.statusCode()).isEqualTo(200);
-
-        Document doc = Jsoup.parse(response.body());
-
-        var elem = doc.getElementById("navbarDropdown").siblingElements().first();
-        var text = elem.text();
-
-        assertThat(text).contains("No user logged in");
-    }
-
-    @Test
     public void test_that_when_logging_in_the_correct_form_is_shown() throws Throwable {
 
         HttpClient client = HttpClient.newHttpClient();
@@ -139,7 +118,7 @@ public class MainServletTestM9 {
         var text = elem.text();
 
         assertThat(text).contains("Red");
-        assertThat(text).contains("Green");
+        assertThat(text).contains("Blue");
         assertThat(text).contains("Default");
     }
 

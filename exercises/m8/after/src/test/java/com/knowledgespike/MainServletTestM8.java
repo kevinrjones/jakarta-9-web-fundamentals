@@ -33,7 +33,7 @@ public class MainServletTestM8 {
         var elem = doc.getElementById("hitcount");
         var text = elem.text();
 
-        assertThat(text).doesNotContain("0");
+        assertThat(text).doesNotContain("Disabled");
     }
 
 

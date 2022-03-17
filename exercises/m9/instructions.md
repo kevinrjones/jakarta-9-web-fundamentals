@@ -23,6 +23,11 @@ Deploy and test the app
 ```
 1. To get the above to work you need to edit the `MainServlet`
 1. Open the `MainServlet` class now, in here, inside the `doGet` method after the call to `setUpData` check what the incoming request URI is, if the request URI contains `login.do` then set an attribute in the request called `action` with a value of `login` (this is what triggers the `index.jsp` to display the login page)
+```java
+        if (req.getRequestURI().contains("showlogin.do")) {
+            req.setAttribute("action", "login");
+        }
+```
 1. In the `MainServlet` add a `doPost` method, this method should
     1. Check that the incoming request is to `login.do`, if it's not then do nothing
     1. If the request is to `login.do` then grab the `username` and `password` from the request
@@ -31,9 +36,9 @@ Deploy and test the app
         1. Create a new user
         1. Create a new session
         1. Store the user in the session
-        1. Redirect to `home`
-```java
+        1. Redirect to `home`.
 
+```java
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (req.getRequestURI().contains("login.do")) {

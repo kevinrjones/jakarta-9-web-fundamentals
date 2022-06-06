@@ -33,7 +33,9 @@ public class MainServletTestM3 {
             HttpResponse<Void> response = client.send(request,
                     HttpResponse.BodyHandlers.discarding());
 
-           assertThat(response.statusCode()).isEqualTo(200);
+           assertThat(response.statusCode())
+                   .withFailMessage("==> Did you deploy the application?")
+                   .isEqualTo(200);
     }
 
     @Test
@@ -48,18 +50,26 @@ public class MainServletTestM3 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you deploy the application?")
+                .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 
         var elem= doc.getElementsByTag("name").first();
-        assertThat(elem.text()).isEqualTo("Hello, Kevin");
+        assertThat(elem.text())
+                .withFailMessage("==> Did you add a name tag with the correct value?")
+                .isEqualTo("Hello, Kevin");
 
         elem= doc.getElementsByTag("product").first();
-        assertThat(elem.text()).isEqualTo("Super Blog");
+        assertThat(elem.text())
+                .withFailMessage("==> Did you add an element tag with the correct value?")
+                .isEqualTo("Super Blog");
 
         elem= doc.getElementsByTag("connectionStr").first();
-        assertThat(elem.text()).isEqualTo("My Connection String");
+        assertThat(elem.text())
+                .withFailMessage("==> Did you add a connectionStr tag with the correct value?")
+                .isEqualTo("My Connection String");
     }
 
     @Test
@@ -74,12 +84,16 @@ public class MainServletTestM3 {
         var response = client.send(request,
                 HttpResponse.BodyHandlers.discarding());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you deploy the application?")
+                .isEqualTo(200);
 
         HttpHeaders headers = response.headers();
         var header =headers.firstValue("content-type");
 
-        assertThat(header.get()).contains("text/xml");
+        assertThat(header.get())
+                .withFailMessage("==> Did you set the correct content type?")
+                .contains("text/xml");
     }
 
     @Test
@@ -96,7 +110,9 @@ public class MainServletTestM3 {
         HttpResponse<Void> response = client.send(request,
                 HttpResponse.BodyHandlers.discarding());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you add a 'POST' handler to the application?")
+                .isEqualTo(200);
     }
 
     @Test
@@ -113,14 +129,18 @@ public class MainServletTestM3 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you add a 'POST' handler to the application?")
+                .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 
         var elem= doc.getElementsByTag("name").first();
 
         assertThat(elem).isNotNull();
-        assertThat(elem.text()).isEqualTo("Hello, Kevin");
+        assertThat(elem.text())
+                .withFailMessage("==> Did you capture the 'name' query string parameter?")
+                .isEqualTo("Hello, Kevin");
     }
 
     @Test
@@ -137,12 +157,16 @@ public class MainServletTestM3 {
         var response = client.send(request,
                 HttpResponse.BodyHandlers.discarding());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you add a 'POST' handler to the application?")
+                .isEqualTo(200);
 
         HttpHeaders headers = response.headers();
         var header =headers.firstValue("content-type");
 
-        assertThat(header.get()).contains("text/xml");
+        assertThat(header.get())
+                .withFailMessage("==> Did you set the correct content type?")
+                .contains("text/xml");
     }
 
     private String getPostParameters() {

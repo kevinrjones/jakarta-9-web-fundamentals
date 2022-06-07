@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+
 val context = "myblog"
 val servletVersion = "5.0.0"
 val jstlVersion = "2.0.0"
@@ -42,6 +44,15 @@ dependencies {
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+    testLogging {
+        exceptionFormat = TestExceptionFormat.FULL
+        showExceptions = true
+        showCauses = true
+        showStackTraces = true
+        showStandardStreams = false
+        events("passed", "skipped", "failed")
+    }
+
 }
 
 cargo {
@@ -59,13 +70,6 @@ cargo {
             "setUsername"("tomee")
             "setPassword"("tomee")
         }
-    }
-}
-
-tasks.test {
-    useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
     }
 }
 

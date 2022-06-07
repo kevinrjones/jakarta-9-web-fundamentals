@@ -1,5 +1,6 @@
 package com.knowledgespike;
 
+import org.assertj.core.api.Assertions;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.junit.jupiter.api.Test;
@@ -16,6 +17,7 @@ import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainServletTestM3 {
 
@@ -23,7 +25,7 @@ public class MainServletTestM3 {
 
     @Test
     public void test_that_my_blog_website_is_reachable() throws Throwable {
-
+        Assertions.setPrintAssertionsDescription(true);
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(String.format("%s/foo.do", URL)))
@@ -33,7 +35,11 @@ public class MainServletTestM3 {
             HttpResponse<Void> response = client.send(request,
                     HttpResponse.BodyHandlers.discarding());
 
-           assertThat(response.statusCode())
+        int actual = response.statusCode();
+        int expected  = 200;
+
+        assertEquals(expected, actual);
+        assertThat(response.statusCode())
                    .withFailMessage("==> Did you deploy the application?")
                    .isEqualTo(200);
     }

@@ -38,7 +38,9 @@ public class MainServletTestM10 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> The color page is not available")
+                .isEqualTo(200);
 
         var cookies = cm.getCookieStore().getCookies();
         var cookieValue = "";
@@ -46,7 +48,9 @@ public class MainServletTestM10 {
             if(cookie.getName().equals("color")) cookieValue = cookie.getValue();
         }
 
-        assertThat(cookieValue).isEqualTo("white");
+        assertThat(cookieValue)
+                .withFailMessage("==> The cookie is not set")
+                .isEqualTo("white");
     }
 
     @Test
@@ -67,7 +71,9 @@ public class MainServletTestM10 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> The color page is not available")
+                .isEqualTo(200);
 
         var cookies = cm.getCookieStore().getCookies();
         var cookieValue = "";
@@ -75,6 +81,8 @@ public class MainServletTestM10 {
             if(cookie.getName().equals("color")) cookieValue = cookie.getValue();
         }
 
-        assertThat(cookieValue).isEqualTo("blue");
+        assertThat(cookieValue)
+                .withFailMessage("==> The cookie is not set")
+                .isEqualTo("blue");
     }
 }

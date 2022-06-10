@@ -32,7 +32,9 @@ public class MainServletTestM12 {
 
         Document doc = Jsoup.parse(response.body());
 
-        assertThat(doc.body().text()).contains("Processing task in thread id:[");
+        assertThat(doc.body().text())
+                .withFailMessage("==> The default color is not white")
+                .contains("Processing task in thread id:[");
     }
 
 }

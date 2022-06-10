@@ -26,7 +26,14 @@ public class MainServletTestM4 {
         HttpResponse<Void> response = client.send(request,
                 HttpResponse.BodyHandlers.discarding());
 
-        assertThat(response.statusCode()).isEqualTo(404);
+
+        assertThat(response)
+                .withFailMessage("==> Did you deploy the application?")
+                .isNotNull();
+
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you add the redirect?")
+                .isEqualTo(404);
     }
 
 

@@ -81,6 +81,7 @@ public class MainServletTestM3 {
                 .withFailMessage("==> Did you add a name tag with the correct value?")
                 .isEqualTo("Hello, Kevin");
 
+        elem=null;
         try {
             elem = doc.getElementsByTag("product").first();
         } catch(Exception e){}
@@ -88,6 +89,7 @@ public class MainServletTestM3 {
         assertThat(elem)
                 .withFailMessage("==> Did you add a name tag?")
                 .isNotNull();
+
         assertThat(elem.text())
                 .withFailMessage("==> Did you add an element tag with the correct value?")
                 .isEqualTo("Super Blog");

@@ -111,6 +111,10 @@ public class MainServletTestM3 {
         HttpHeaders headers = response.headers();
         var header = headers.firstValue("content-type");
 
+        assertThat(header.isPresent())
+                .withFailMessage("==> Did you set the correct content type?")
+                .isTrue();
+
         assertThat(header.get())
                 .withFailMessage("==> Did you set the correct content type?")
                 .contains("text/xml");

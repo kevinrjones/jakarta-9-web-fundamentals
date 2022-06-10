@@ -26,14 +26,18 @@ public class MainServletTestM6 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you deploy the application")
+                .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 
         var elem= doc.getElementById("navbarDropdown").siblingElements().first();
         var text = elem.text();
 
-        assertThat(text).contains("No user logged in");
+        assertThat(text)
+                .withFailMessage("==> Is the user logged in by mistake")
+                .contains("No user logged in");
     }
 
         @Test
@@ -55,8 +59,14 @@ public class MainServletTestM6 {
             var elem= doc.getElementById("navbarDropdown").siblingElements().first();
             var text = elem.text();
 
-            assertThat(text).contains("Red");
-            assertThat(text).contains("Green");
-            assertThat(text).contains("Default");
+            assertThat(text)
+                    .withFailMessage("==> Is the user logged in and did you add 'red' to the dropdown")
+                    .contains("Red");
+            assertThat(text)
+                    .withFailMessage("==> Is the user logged in and did you add 'green' to the dropdown")
+                    .contains("Green");
+            assertThat(text)
+                    .withFailMessage("==> Is the user logged in and did you add 'default' to the dropdown")
+                    .contains("Default");
     }
 }

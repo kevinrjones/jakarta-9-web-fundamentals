@@ -1,7 +1,9 @@
 package com.knowledgespike;
 
+import org.assertj.core.api.Assertions;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -16,26 +18,31 @@ import java.util.stream.Stream;
 
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MainServletTestM3 {
 
-    static String URL="http://localhost:8081/myblog";
+    static String URL = "http://localhost:8081/myblog";
 
     @Test
     public void test_that_my_blog_website_is_reachable() throws Throwable {
+        Assertions.setPrintAssertionsDescription(true);
+        HttpClient client = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(String.format("%s/foo.do", URL)))
+                .GET() // GET is default
+                .build();
 
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                    .uri(URI.create(String.format("%s/foo.do", URL)))
-                    .GET() // GET is default
-                    .build();
+        HttpResponse<Void> response = client.send(request,
+                HttpResponse.BodyHandlers.discarding());
 
-            HttpResponse<Void> response = client.send(request,
-                    HttpResponse.BodyHandlers.discarding());
+        int actual = response.statusCode();
+        int expected = 200;
 
-           assertThat(response.statusCode())
-                   .withFailMessage("==> Did you deploy the application?")
-                   .isEqualTo(200);
+        assertEquals(expected, actual);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you deploy the application?")
+                .isEqualTo(200);
     }
 
     @Test
@@ -50,23 +57,44 @@ public class MainServletTestM3 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
+        assertThat(response)
+                .withFailMessage("==> Did you deploy the application?")
+                .isNotNull();
+
+
         assertThat(response.statusCode())
                 .withFailMessage("==> Did you deploy the application?")
                 .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem= doc.getElementsByTag("name").first();
+        Element elem = null;
+        try {
+            elem = doc.getElementsByTag("name").first();
+        } catch (Exception e) {
+        }
+        assertThat(elem)
+                .withFailMessage("==> Did you add a name tag?")
+                .isNotNull();
+
         assertThat(elem.text())
                 .withFailMessage("==> Did you add a name tag with the correct value?")
                 .isEqualTo("Hello, Kevin");
 
-        elem= doc.getElementsByTag("product").first();
+        elem=null;
+        try {
+            elem = doc.getElementsByTag("product").first();
+        } catch(Exception e){}
+
+        assertThat(elem)
+                .withFailMessage("==> Did you add a name tag?")
+                .isNotNull();
+
         assertThat(elem.text())
                 .withFailMessage("==> Did you add an element tag with the correct value?")
                 .isEqualTo("Super Blog");
 
-        elem= doc.getElementsByTag("connectionStr").first();
+        elem = doc.getElementsByTag("connectionStr").first();
         assertThat(elem.text())
                 .withFailMessage("==> Did you add a connectionStr tag with the correct value?")
                 .isEqualTo("My Connection String");
@@ -89,7 +117,11 @@ public class MainServletTestM3 {
                 .isEqualTo(200);
 
         HttpHeaders headers = response.headers();
-        var header =headers.firstValue("content-type");
+        var header = headers.firstValue("content-type");
+
+        assertThat(header.isPresent())
+                .withFailMessage("==> Did you set the correct content type?")
+                .isTrue();
 
         assertThat(header.get())
                 .withFailMessage("==> Did you set the correct content type?")
@@ -109,6 +141,10 @@ public class MainServletTestM3 {
 
         HttpResponse<Void> response = client.send(request,
                 HttpResponse.BodyHandlers.discarding());
+
+        assertThat(response)
+                .withFailMessage("==> Did you add a 'POST' handler to the application?")
+                .isNotNull();
 
         assertThat(response.statusCode())
                 .withFailMessage("==> Did you add a 'POST' handler to the application?")
@@ -135,9 +171,18 @@ public class MainServletTestM3 {
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem= doc.getElementsByTag("name").first();
 
-        assertThat(elem).isNotNull();
+        Element elem = null;
+        try {
+            elem = doc.getElementsByTag("name").first();
+        } catch (Exception e) {
+
+        }
+
+        assertThat(elem)
+                .withFailMessage("==> Did you add a name tag")
+                .isNotNull();
+
         assertThat(elem.text())
                 .withFailMessage("==> Did you capture the 'name' query string parameter?")
                 .isEqualTo("Hello, Kevin");
@@ -162,7 +207,11 @@ public class MainServletTestM3 {
                 .isEqualTo(200);
 
         HttpHeaders headers = response.headers();
-        var header =headers.firstValue("content-type");
+        var header = headers.firstValue("content-type");
+
+        assertThat(header.isPresent())
+                .withFailMessage("==> Did you set the correct content type?")
+                .isTrue();
 
         assertThat(header.get())
                 .withFailMessage("==> Did you set the correct content type?")

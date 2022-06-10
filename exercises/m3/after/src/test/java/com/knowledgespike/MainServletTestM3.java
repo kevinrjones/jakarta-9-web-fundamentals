@@ -3,6 +3,7 @@ package com.knowledgespike;
 import org.assertj.core.api.Assertions;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 
 import java.net.URI;
@@ -56,13 +57,22 @@ public class MainServletTestM3 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
+        assertThat(response)
+                .withFailMessage("==> Did you deploy the application?")
+                .isNotNull();
+
+
         assertThat(response.statusCode())
                 .withFailMessage("==> Did you deploy the application?")
                 .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem = doc.getElementsByTag("name").first();
+        Element elem = null;
+        try {
+            elem = doc.getElementsByTag("name").first();
+        } catch (Exception e) {
+        }
         assertThat(elem)
                 .withFailMessage("==> Did you add a name tag?")
                 .isNotNull();
@@ -145,12 +155,18 @@ public class MainServletTestM3 {
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem = doc.getElementsByTag("name").first();
+
+        Element elem = null;
+        try {
+            elem = doc.getElementsByTag("name").first();
+        } catch (Exception e) {
+
+        }
 
         assertThat(elem)
                 .withFailMessage("==> Did you add a name tag")
                 .isNotNull();
-        
+
         assertThat(elem.text())
                 .withFailMessage("==> Did you capture the 'name' query string parameter?")
                 .isEqualTo("Hello, Kevin");
@@ -176,6 +192,10 @@ public class MainServletTestM3 {
 
         HttpHeaders headers = response.headers();
         var header = headers.firstValue("content-type");
+
+        assertThat(header.isPresent())
+                .withFailMessage("==> Did you set the correct content type?")
+                .isTrue();
 
         assertThat(header.get())
                 .withFailMessage("==> Did you set the correct content type?")

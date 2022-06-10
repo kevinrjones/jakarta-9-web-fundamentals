@@ -81,7 +81,13 @@ public class MainServletTestM3 {
                 .withFailMessage("==> Did you add a name tag with the correct value?")
                 .isEqualTo("Hello, Kevin");
 
-        elem = doc.getElementsByTag("product").first();
+        try {
+            elem = doc.getElementsByTag("product").first();
+        } catch(Exception e){}
+
+        assertThat(elem)
+                .withFailMessage("==> Did you add a name tag?")
+                .isNotNull();
         assertThat(elem.text())
                 .withFailMessage("==> Did you add an element tag with the correct value?")
                 .isEqualTo("Super Blog");
@@ -133,6 +139,10 @@ public class MainServletTestM3 {
 
         HttpResponse<Void> response = client.send(request,
                 HttpResponse.BodyHandlers.discarding());
+
+        assertThat(response)
+                .withFailMessage("==> Did you add a 'POST' handler to the application?")
+                .isNotNull();
 
         assertThat(response.statusCode())
                 .withFailMessage("==> Did you add a 'POST' handler to the application?")

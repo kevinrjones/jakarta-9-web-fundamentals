@@ -2,6 +2,7 @@ package com.knowledgespike;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 import org.junit.jupiter.api.Test;
 
 import java.net.CookieHandler;
@@ -42,7 +43,9 @@ public class MainServletTestM9 {
         var elem = doc.getElementById("navbarDropdown").siblingElements().first();
         var text = elem.text();
 
-        assertThat(text).contains("No user logged in");
+        assertThat(text)
+                .withFailMessage("==> The user is not logged in")
+                .contains("No user logged in");
     }
 
     @Test
@@ -61,8 +64,14 @@ public class MainServletTestM9 {
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem = doc.getElementsByClass("login-form").first();
-        assertThat(elem).isNotNull();
+        Element elem = null;
+        try {
+            elem = doc.getElementsByClass("login-form").first();
+        } catch (Exception e) {
+        }
+        assertThat(elem)
+                .withFailMessage("==> The login form has not been shown")
+                .isNotNull();
 
     }
 
@@ -81,11 +90,20 @@ public class MainServletTestM9 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(302);
+
+        assertThat(response)
+                .withFailMessage("==> The login page has not been re-shown")
+                .isNotNull();
+
+        assertThat(response.statusCode())
+                .withFailMessage("==> The login page has not been re-shown")
+                .isEqualTo(302);
 
         HttpHeaders headers = response.headers();
         var header = headers.firstValue("Location");
-        assertThat(header).contains("showlogin.do");
+        assertThat(header)
+                .withFailMessage("==> The login page has not been re-shown")
+                .contains("showlogin.do");
     }
 
     @Test
@@ -107,7 +125,12 @@ public class MainServletTestM9 {
 
         HttpHeaders headers = response.headers();
         var header = headers.firstValue("Location");
-        assertThat(header.get()).contains("home");
+        assertThat(header.isPresent())
+                .withFailMessage("==> The index page has not been reshown")
+                .isTrue();
+        assertThat(header.get())
+                .withFailMessage("==> The index page has not been reshown")
+                .contains("home");
     }
 
     @Test
@@ -118,7 +141,7 @@ public class MainServletTestM9 {
         CookieManager cm = new CookieManager();
         CookieHandler.setDefault(cm);
 
-        var client  = HttpClient.newBuilder()
+        var client = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.NORMAL)
                 .cookieHandler(CookieHandler.getDefault())
                 .build();
@@ -135,12 +158,28 @@ public class MainServletTestM9 {
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem = doc.getElementById("navbarDropdown").siblingElements().first();
+        Element elem = null;
+        try {
+            elem = doc.getElementById("navbarDropdown").siblingElements().first();
+        } catch (Exception e) {
+
+        }
+
+        assertThat(elem)
+                .withFailMessage("==> Is the user logged in and did you add 'red' to the dropdown")
+                .isNotNull();
+
         var text = elem.text();
 
-        assertThat(text).contains("Red");
-        assertThat(text).contains("Green");
-        assertThat(text).contains("Default");
+        assertThat(text)
+                .withFailMessage("==> Is the user logged in and did you add 'red' to the dropdown")
+                .contains("Red");
+        assertThat(text)
+                .withFailMessage("==> Is the user logged in and did you add 'green' to the dropdown")
+                .contains("Green");
+        assertThat(text)
+                .withFailMessage("==> Is the user logged in and did you add 'default' to the dropdown")
+                .contains("Default");
     }
 
     private String getInvalidPostParameters() {

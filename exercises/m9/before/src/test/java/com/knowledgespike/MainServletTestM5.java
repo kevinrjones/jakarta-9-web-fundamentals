@@ -13,7 +13,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class MainServletTestM5 {
 
-    static String URL="http://localhost:8081/myblog";
+    static String URL = "http://localhost:8081/myblog";
 
 
     @Test
@@ -28,13 +28,17 @@ public class MainServletTestM5 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> Did you deploy the application?")
+                .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 
-        var elem= doc.getElementsByTag("link").first();
+        var elem = doc.getElementsByTag("link").first();
         var link = elem.attr("href");
 
-        assertThat(link).startsWith("/myblog");
+        assertThat(link)
+                .withFailMessage("==> Did you change the code to use the context path?")
+                .startsWith("/myblog");
     }
 }

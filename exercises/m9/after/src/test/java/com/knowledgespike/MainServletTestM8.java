@@ -33,7 +33,13 @@ public class MainServletTestM8 {
         var elem = doc.getElementById("hitcount");
         var text = elem.text();
 
-        assertThat(text).doesNotContain("0");
+        assertThat(text)
+                .withFailMessage("==> You have not set the hitcount?")
+                .doesNotContain("0");
+
+        assertThat(text)
+                .withFailMessage("==> You have not set the hitcount?")
+                .doesNotContain("Disabled");
     }
 
 

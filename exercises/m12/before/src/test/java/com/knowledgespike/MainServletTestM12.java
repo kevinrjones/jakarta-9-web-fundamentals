@@ -28,7 +28,9 @@ public class MainServletTestM12 {
         HttpResponse<String> response = client.send(request,
                 HttpResponse.BodyHandlers.ofString());
 
-        assertThat(response.statusCode()).isEqualTo(200);
+        assertThat(response.statusCode())
+                .withFailMessage("==> The color page is not available")
+                .isEqualTo(200);
 
         Document doc = Jsoup.parse(response.body());
 

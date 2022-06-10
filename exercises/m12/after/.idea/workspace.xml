@@ -49,7 +49,11 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "WebServerToolWindowFactoryState": "false"
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -139,7 +143,7 @@
       <workItem from="1645971102770" duration="6000" />
       <workItem from="1645971192839" duration="1215000" />
       <workItem from="1647534449047" duration="1119000" />
-      <workItem from="1654877526688" duration="5000" />
+      <workItem from="1654877526688" duration="448000" />
     </task>
     <servers />
   </component>

@@ -1,0 +1,11 @@
+rules:
+  - id: create_a_session
+    patterns:
+      - pattern: Cookie cookie = new Cookie("color", color);
+      - pattern-inside: |
+          private String setColor(HttpServletRequest req, HttpServletResponse resp) {          
+          ...
+          }
+    message: Semgrep found a match
+    languages: [java]
+    severity: WARNING

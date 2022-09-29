@@ -1,7 +1,7 @@
 rules:
   - id: create_a_session
     patterns:
-      - pattern: session.setAttribute("user", userName);
+      - pattern: HttpSession session = req.getSession(true);
       - pattern-inside: |
           protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {          
           ...

@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 
@@ -21,9 +22,9 @@ public class MainServlet extends HttpServlet {
             if (userName.isEmpty() || !userName.equals(password)) {
                 resp.sendRedirect(resp.encodeURL("showlogin.do"));
             } else {
-                var session = req.getSession(true);
+                HttpSession session = null;
 
-                // todo: creeate session here
+                session.setAttribute("user", userName);
 
                 resp.sendRedirect(resp.encodeURL("home"));
             }

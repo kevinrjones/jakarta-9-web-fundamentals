@@ -1,0 +1,11 @@
+rules:
+  - id: create_a_session
+    patterns:
+      - pattern: session.setAttribute("user", userName);
+      - pattern-inside: |
+          protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {          
+          ...
+          }
+    message: Semgrep found a match
+    languages: [java]
+    severity: WARNING

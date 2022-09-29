@@ -23,7 +23,7 @@ public class MainServlet extends HttpServlet {
             } else {
                 var session = req.getSession(true);
 
-                session.setAttribute("user", userName);
+                // todo: creeate session here
 
                 resp.sendRedirect(resp.encodeURL("home"));
             }

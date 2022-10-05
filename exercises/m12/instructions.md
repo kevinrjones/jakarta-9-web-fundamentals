@@ -1,4 +1,4 @@
-# Module 12 - Asynchronous Programming
+# Asynchronous Programming
 
 ## General Instructions
 
@@ -10,9 +10,10 @@ The exercises have two directories, the `before` directory is where you will wor
 
 Deploy and test the app
 
-1. In this exercise you will add and test a simple asynchronous servlet.
-1. Create a new package named `com.knowledgespike.async`
-1. In this package create a servlet called `firstAsyncServlet`, add a `WebServlet` attribute with a URL of `/simple`
++ In this exercise you will add and test a simple asynchronous servlet.
++ Create a new package named `com.knowledgespike.async`
++ In this package create a servlet called `firstAsyncServlet`. Add a `WebServlet` attribute with a URL of `/simple`
+
 ```java
 package com.knowledgespike.async;
 
@@ -32,13 +33,14 @@ import static java.lang.String.format;
 public class FirstAsyncServlet extends HttpServlet {
 }
 ```
-1. Override the `doGet` method
-1. In the `doGet` method add a call to `req.startAsync()` and store the result in a variable called `ctx`
-1. Call `ctx.start` passing a lambda.
-1. In the lambda use the `ctx` to get an `HttpResponse`, get a writer from the response and write a message to the client, the message should say
++ Override the `doGet` method
++ In the `doGet` method add a call to `req.startAsync()` and store the result in a variable called `ctx`
++ Call `ctx.start` passing a lambda.
++ In the lambda use the `ctx` to get an `HttpResponse`, get a writer from the response and write a message to the client, the message should say
+
 ```html
-"<h1>Processing task in thread id:[%s]</h1>"
+<h1>Processing task in thread id:[%s]</h1>
 ``` 
 Where the %s should be the current thread id
-1. Call `ctx.complete` to close the asynchronous context
-1. Deploy and test the application
++ Call `ctx.complete` to close the asynchronous context
++ Deploy and test the application

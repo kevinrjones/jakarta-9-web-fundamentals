@@ -1,4 +1,4 @@
-# Module 10 - Cookies
+# Cookies
 
 ## General Instructions
 
@@ -12,11 +12,11 @@ Deploy and test the app
 
 ## Using a Cookie
 
-1. In this exercise you will use a cookie to hold the selected background color
++ In this exercise you will use a cookie to hold the selected background color
 
-1. In `MainServlet` add a `private static final String` member call `defaultColor` with the initial value of "white"
-1. Make sure you import the `jakarta.servlet.http.Cookie` package
-1. You need two helper methods, `getColorFromCookie` and `setColor`. `getColorFromCookie` needs to return either the color stored in a cookie called 'color' or the default calor value if the cookie does not exist.
++ In `MainServlet` add a `private static final String` member call `defaultColor` with the initial value of "white"
++ Make sure you import the `jakarta.servlet.http.Cookie` package
++ You need two helper methods, `getColorFromCookie` and `setColor`. `getColorFromCookie` needs to return either the color stored in a cookie called 'color' or the default calor value if the cookie does not exist.
 ```java
     private String getColorFromCookie(Cookie[] cookies) {
         var color = defaultColor;
@@ -32,7 +32,7 @@ Deploy and test the app
         return color;
     }
 ```
-1. `setColor` needs to get the color from the request parameter and if that value is available store it in the cookie
++ `setColor` needs to get the color from the request parameter and if that value is available store it in the cookie
 ```java
     private String setColor(HttpServletRequest req, HttpServletResponse resp) {
         var color = req.getParameter("color");
@@ -50,13 +50,13 @@ Deploy and test the app
 
     }
 ```
-1. In the `doGet` method after the call to `setUpData` call `getColorFromCookie` and the store that color as an attribute named `color` on the request
++ In the `doGet` method after the call to `setUpData` call `getColorFromCookie` and the store that color as an attribute named `color` on the request
 ```java
         String color = getColorFromCookie(req.getCookies());
 
         req.setAttribute("color", color);
 ```
-1. Also in the `doGet` method if the URI is `color.do` then call `setColor` and again store that color as an attribute named `color` on the request
++ Also in the `doGet` method if the URI is `color.do` then call `setColor` and again store that color as an attribute named `color` on the request
 ```java
 else if (req.getRequestURI().contains("color.do")) {
     String newColor = setColor(req, resp);
@@ -64,5 +64,5 @@ else if (req.getRequestURI().contains("color.do")) {
 }
 ```
 
-1. Redeploy and test the application
++ Redeploy and test the application
 

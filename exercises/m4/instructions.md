@@ -1,4 +1,4 @@
-# Module 4 - Add Jakarta Server Pages
+# Add Jakarta Server Pages
 
 ## General Instructions
 
@@ -14,16 +14,16 @@ Deploy and test the app, two tests should pass, these are the tests from the pre
 
 Move the header to a header block and include it
 
-1. In `webapp` create an `_header.jsp` page
-1. Move the 'header' block from the 'index.jsp' page
-1. Add a call to 'include' directive to the 'index.jsp' page to include the header
-1. Redeploy and browse to and test the application, 2 tests should pass
-1. If you open a browser tab and browse to http://localhost:8081/myblog/index.jsp you should still see the header
++ In the `webapp/WEB-INF` directory  create an `_header.jsp` page
++ Move the 'header' block from the 'index.jsp' page
++ Add a call to 'include' directive to the 'index.jsp' page to include the header
++ Redeploy and browse to and test the application, 2 tests should pass
++ If you open a browser tab and browse to http://localhost:8081/myblog/index.jsp you should still see the header
 
 ## Use a Scriptlet
 
-1. In `_header.jsp` there is a section that displays a list of colors, you are going to replace this with a dynamic block
-1. At the top of the page add a code block to initialise the colors, the code should look like this:
++ In `_header.jsp` there is a section that displays a list of colors, you are going to replace this with a dynamic block
++ At the top of the page add a code block to initialise the colors, the code should look like this:
 ```jsp
 <%
   List<String> colors = new ArrayList<>();
@@ -38,34 +38,35 @@ Remember that you will also need to add the correct package references
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>Ø
 ```
-1. Where the colors are shown in the HTML replace that block with a Java code block that iterates over the `colors` collection and displays each color, something like this:
++ Where the colors are shown in the HTML replace that block with a Java code block that iterates over the `colors` collection and displays each color, something like this:
 ```jsp
 <% for (String color:colors) { %>
 <li><%= color %></li>
 <% } %>
 ```
-1. Redeploy and browse to and test the application, 2 tests should pass
-1. If you open a browser tab and browse to http://localhost:8081/myblog/index.jsp you should be able to click on the colors menu and still see the colors
++ Redeploy and browse to and test the application, 2 tests should pass
++ If you open a browser tab and browse to http://localhost:8081/myblog/index.jsp you should be able to click on the colors menu and still see the colors
 
 ## Setup MVC
 
-1. Delete index.jsp and _header.jsp from the root directory, if you open the WEB-INF folder you will see that these files exist there, these files are no longer 
-1. In `MainServlet` replace the code in `doGet` with calls to get the `RequestDispatcher` and to dispatch to `index.jsp`
++ Delete index.jsp and _header.jsp from the root directory, if you open the WEB-INF folder you will see that these files exist there, the original files are no longer needed 
++ You are now working in `MainServlet.java`
++ In `MainServlet` replace the code in `doGet` with calls to get the `RequestDispatcher` and to dispatch to `index.jsp`
 ```java
         var dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/index.jsp");
         dispatcher.forward(req, resp);
 ```
-1. Redeploy and build the application, one test should now pass
-1. If you browse to http://localhost:8081/myblog/index.jsp you should get a 404 but if you browse to http://localhost:8081/myblog/home then the page should appear
++ Redeploy and build the application, one test should now pass
++ If you browse to http://localhost:8081/myblog/index.jsp you should get a 404 but if you browse to http://localhost:8081/myblog/home then the page should appear
 ## Create and Use a Model to Display the Topics
 
-1. In the '`init` method create a new `ApplicationSettings` instance and store it in the `ServletContext`giving it the name `app`
++ In the `init` method create a new `ApplicationSettings` instance and store it in the `ServletContext`giving it the name `app`
 ```java
         var applicationSettings = new ApplicationSettings();
         getServletContext().setAttribute("app", applicationSettings);
 ```
-1. Create a page called `_topics.jsp` in the WEB-INF directory
-1. Add the HTML to show the topics, the HTML should initially look like this
++ Create a page called `_topics.jsp` in the `webapp/WEB-INF` directory
++ Add the HTML to show the topics, the HTML should initially look like this
 ```jsp
 <div>
     <h3>Topics</h3>
@@ -74,7 +75,7 @@ Remember that you will also need to add the correct package references
     </ul>
 </div>
 ```
-1. Now add the Java code to display the topics, to do this you need to get the `ApplicationSettings` instance from the `ServletContext` and then get the `List<Topic>` from the `ApplicationSettings`. 
++ Now add the Java code to display the topics, to do this you need to get the `ApplicationSettings` instance from the `ServletContext` and then get the `List<Topic>` from the `ApplicationSettings`. 
 
 That code looks like this
 ```java
@@ -86,22 +87,23 @@ for(Topic topic: topics) { %>
     <li><a href="/topic<%= topic.getUrl() %>"><%= topic.getTitle() %> </a></li>
 <% } %>
 ```
-1. In index.jsp add a call to `<%@include file="_topics.jsp"%>` to make sure the topics are included in the page
-1. Deploy and run the tests, 5 tests should pass
++ Open `webapp\WEB-INF\index.jsp`
++ In index.jsp add a call to `<%@include file="_topics.jsp"%>` to make sure the topics are included in the page
++ Deploy and run the tests, 5 tests should pass
 
 ## Create and Use a Model to Display the News Items
 
-1. In the `MainServlet` find the `setupData` method and add a call to add the data into the `request` with the name `items`
++ In the `MainServlet` find the `setupData` method and add a call to add the data into the `request` with the name `items`
 The code should look like this:
 ```java
         request.setAttribute("items", data);
 ```
-1. Inside `doGet` make this call
++ Inside `doGet` make this call
 ```java
 setUpData(req, ApplicationSettings.topic, ApplicationSettings.all);
 ```
-1. Create a page called `_newsitems.jsp` in the WEB-INF directory
-1. Add the HTML and code to show the topics, the HTML should initially look like this
++ Create a page called `_newsitems.jsp` in the `webapp\WEB-INF` directory
++ Add the HTML and code to show the topics, the HTML should initially look like this
 ```jsp
 <%@ page import="com.knowledgespike.blog.NewsItem" %>
 <%@ page import="java.util.List" %>
@@ -122,5 +124,5 @@ setUpData(req, ApplicationSettings.topic, ApplicationSettings.all);
 
 </div>
 ```
-1. In index.jsp add a call to `<%@include file="_newsitems.jsp"%>` to make sure the topics are included in the page
-1. Deploy and run the tests, all tests should pass
++ In `index.jsp` add a call to `<%@include file="_newsitems.jsp"%>` to make sure the topics are included in the page
++ Deploy and run the tests, all tests should pass

@@ -8,7 +8,7 @@ The exercises have two directories, the `before` directory is where you will wor
 
 ## Writing Your First Servlet
 
-There are several steps to writing, deploying and making accessible your servlets, you have to write the code, provide the mapping and deploy the application. There is skeleton code provided in the `before` directory, for this exercise you will be working in the `before/src/main/java/com/knowledgespike/MainServlet.java` file, open this file now.
+There are several steps to writing, deploying and making accessible your servlets, you have to write the code, provide the mapping and deploy the application. There is skeleton code provided in the `before` directory, for this exercise you will be working in the `before/src/main/java/com/knowledgespike/MainServlet.java` file.
 
 This file already has the `MainServlet` class defined as well as the `urlPatterns` to allow you to browse to the file. In this exercise you will provide simple implementations of `doGet` and `doPost`
 
